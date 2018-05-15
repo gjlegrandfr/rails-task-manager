@@ -1,12 +1,22 @@
-<%= form_for @task do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :details %>
-  <%= f.text_area :details %>
-  <% unless @task.new_record? %>
-    <%= f.label :completed %>
-    <%= f.check_box :completed %>
-  <% end %>
-  <%= f.submit @task.new_record?() ? "Create Task" : "Update Task" %>
+<%= form_for @task, :html => {:class => "form"} do |f| %>
+<div class="form-group">
+  <%= f.label :title, class: "control-label" %>
+  <%= f.text_field :title, class: "form-control" %>
+</div>
+<div class="from-group">
+  <%= f.label :details, class: "control-label" %>
+  <%= f.text_area :details, class: "form-control" %>
+</div>
+<br>
+<% unless @task.new_record? %>
+<div class="form-group">
+  <%= f.check_box :completed %>
+  <%= f.label :completed %>
+</div>
 <% end %>
+<div class="form-group">
+  <%= f.submit @task.new_record?() ? "Create Task" : "Update Task", class: "btn btn-primary" %>
+  <% end %>
+</div>
+<hr>
 <%= link_to "Back to list", tasks_path %>
